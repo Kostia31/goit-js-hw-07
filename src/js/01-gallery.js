@@ -10,7 +10,7 @@ function createElementsGallery(galleryItems) {
     .map((img, i) => {
       return `
 <li class="gallery__item">
-  <a class="gallery__link" href="large-image.jpg">
+  <a class="gallery__link" href="${galleryItems[i].original}">
     <img
       class="gallery__image"
       src="${galleryItems[i].preview}"
