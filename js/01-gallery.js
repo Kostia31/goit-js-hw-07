@@ -39,18 +39,17 @@ function onClickGallery(evt) {
   <div class="modal">
         <img
       class="gallery__image"
-      src="${evt.target.src}"
-      data-source="${evt.target.dataset.source}"
+      src="${evt.target.dataset.source}"
       alt="${evt.target.alt}"
     />
     </div>
 `);
   instance.show();
 
-  window.addEventListener("keydown", function closeModal(evt) {
+  galleryRef.addEventListener("keydown", function closeModal(evt) {
     if (evt.code === "Escape") {
       instance.close();
-      this.window.removeEventListener("keydown", closeModal);
+      galleryRef.removeEventListener("keydown", closeModal);
     }
   });
 }

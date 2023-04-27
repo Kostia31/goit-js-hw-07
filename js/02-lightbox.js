@@ -1,8 +1,6 @@
 import {galleryItems} from "./gallery-items.js";
 // Change code below this line
 
-console.log(galleryItems);
-
 const galleryRef = document.querySelector(".gallery");
 
 function createElementsGallery(galleryItems) {
@@ -26,3 +24,16 @@ function createElementsGallery(galleryItems) {
 }
 createElementsGallery(galleryItems);
 
+galleryRef.addEventListener("click", shownGalerry);
+
+function shownGalerry(event) {
+  event.target.title = event.target.alt;
+  event.preventDefault();
+}
+
+const lightbox = new SimpleLightbox(".gallery a", {
+  nav: false,
+  close: false,
+  showCounter: false,
+  captionDelay: 250,
+});
