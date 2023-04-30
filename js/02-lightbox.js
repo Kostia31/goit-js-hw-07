@@ -5,14 +5,14 @@ const galleryRef = document.querySelector(".gallery");
 
 function createElementsGallery(galleryItems) {
   const galleryElementsList = galleryItems
-    .map((img, i) => {
+    .map((img) => {
       return `
 <li class="gallery__item">
-  <a class="gallery__link" href="${galleryItems[i].original}">
+  <a class="gallery__link" href="${img.original}">
     <img
       class="gallery__image"
-      src="${galleryItems[i].preview}"
-      alt="${galleryItems[i].description}"
+      src="${img.preview}"
+      alt="${img.description}"
     />
   </a>
 </li>
@@ -26,8 +26,8 @@ createElementsGallery(galleryItems);
 
 galleryRef.addEventListener("click", shownGalerry);
 
+
 function shownGalerry(event) {
-  event.target.title = event.target.alt;
   event.preventDefault();
 }
 
@@ -35,5 +35,6 @@ const lightbox = new SimpleLightbox(".gallery a", {
   nav: false,
   close: false,
   showCounter: false,
+  captionsData: "alt",
   captionDelay: 250,
 });

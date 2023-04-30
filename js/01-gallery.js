@@ -7,15 +7,15 @@ const galleryRef = document.querySelector(".gallery");
 
 function createElementsGallery(galleryItems) {
   const galleryElementsList = galleryItems
-    .map((img, i) => {
+    .map((img) => {
       return `
 <li class="gallery__item">
-  <a class="gallery__link" href="${galleryItems[i].original}">
+  <a class="gallery__link" href="${img.original}">
     <img
       class="gallery__image"
-      src="${galleryItems[i].preview}"
-      data-source="${galleryItems[i].original}"
-      alt="${galleryItems[i].description}"
+      src="${img.preview}"
+      data-source="${img.original}"
+      alt="${img.description}"
     />
   </a>
 </li>
@@ -35,7 +35,8 @@ function onClickGallery(evt) {
   }
   evt.preventDefault();
 
-  const instance = basicLightbox.create(`
+  const instance = basicLightbox.create(
+    `
   <div class="modal">
         <img
       class="gallery__image"
@@ -43,13 +44,14 @@ function onClickGallery(evt) {
       alt="${evt.target.alt}"
     />
     </div>
-`);
+`
+  );
   instance.show();
 
-  galleryRef.addEventListener("keydown", function closeModal(evt) {
+  window.addEventListener("keydown", function closeModal(evt) {
     if (evt.code === "Escape") {
       instance.close();
-      galleryRef.removeEventListener("keydown", closeModal);
+      this.window.removeEventListener("keydown", closeModal);
     }
   });
 }
